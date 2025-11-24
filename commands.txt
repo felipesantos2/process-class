@@ -1,0 +1,20 @@
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    composer/composer:latest \
+    composer create-project laravel/laravel turbine
+
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    composer/composer:latest \
+    php artisan sail:install
+
+sail art make:command S3FilesDownload
+sail art make:command TarumirimMGUpdatePortal
+sail art make:model Portal/WP_Log
+
+
+
