@@ -1,5 +1,10 @@
-#!bin/bash
+#!/bin/bash
 
+vendor/bin/phpstan analyse -c phpstan.neon
+vendor/bin/rector process --dry-run
+
+# chmod +x linter add exec permission
 
 # add phostan
 # add rector
+
