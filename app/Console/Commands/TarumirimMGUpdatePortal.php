@@ -32,19 +32,10 @@ class TarumirimMGUpdatePortal extends Command
      */
     public function handle(): void
     {
-        // WP_Log::insert([
-        //     'data' => now(),
-        // ]);
-
-        // Process::run('ls -la');
-
-        $bench = Benchmark::value([
-            'planets' => fn (): Response|string => Http::get('https://swapi.dev/api/planets/')->body(),
-            'films'   => fn (): Response|string => Http::get('https://swapi.dev/api/films/6')->body(),
-        ]);
-
-        // dd($bench);
-
+        // get file
+        // truncate
+        // open file
+        // run lines in db
     }
 
 }
