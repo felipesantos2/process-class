@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Portal\WP_Log;
 use Illuminate\Console\Command;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Benchmark;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Process;
-
 
 class TarumirimMGUpdatePortal extends Command
 {
@@ -23,7 +25,7 @@ class TarumirimMGUpdatePortal extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update portal';
 
     /**
      * Execute the console command.
@@ -36,10 +38,13 @@ class TarumirimMGUpdatePortal extends Command
 
         // Process::run('ls -la');
 
-        // Benchmark::dd([
-        //     '1' => fn() => WP_Log::find([100, 200]),
-        //     '2' => fn() => WP_log::all(),
-        // ]);
+        $bench = Benchmark::value([
+            'planets' => fn (): Response|string => Http::get('https://swapi.dev/api/planets/')->body(),
+            'films'   => fn (): Response|string => Http::get('https://swapi.dev/api/films/6')->body(),
+        ]);
+
+        // dd($bench);
 
     }
+
 }
